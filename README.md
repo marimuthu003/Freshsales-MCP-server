@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/Freshworks_logo_2021.svg" alt="Freshworks Logo" width="200" height="auto">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Freshworks_logo_2021.svg/512px-Freshworks_logo_2021.svg.png" alt="Freshworks Logo" width="200" height="auto">
   
   # Freshsales CRM — Model Context Protocol (MCP) Server
 
