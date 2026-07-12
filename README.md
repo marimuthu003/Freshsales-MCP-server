@@ -89,10 +89,47 @@ uv pip install -e .
 python -m freshsales_mcp
 ```
 
-### Testing with the MCP Inspector
-To visually debug and test all 75+ tools in your browser before connecting an AI:
+### 🧪 Testing with the MCP Inspector
+
+The [MCP Inspector](https://github.com/modelcontextprotocol/inspector) is the official interactive developer tool that lets you test all 75+ tools visually in your browser before you hook them up to an AI.
+
+To run the inspector:
 ```bash
 npx @modelcontextprotocol/inspector uv run python -m freshsales_mcp
+```
+
+1. The command will output a local URL (e.g., `http://localhost:5173`).
+2. Open that URL in your browser and click **Connect**.
+3. Navigate to the **Tools** tab to see the entire Freshsales integration.
+4. Try clicking `freshsales_get_selectors`, enter `deal_stages`, and click **Run** to see real CRM data flow back!
+
+---
+
+## 🚝 Transport Modes
+
+This server implements all three official MCP transport modes. You can switch between them using the `--transport` flag.
+
+### 1. `stdio` (Default)
+**Best for:** Local AI IDEs (Cursor, Windsurf, Cline) and Desktop Apps (Claude Desktop).
+**How it works:** The AI communicates with the server directly through standard input/output streams. It is incredibly fast and requires no networking.
+```bash
+python -m freshsales_mcp --transport stdio
+```
+
+### 2. `streamable-http` (Modern Web)
+**Best for:** Cloud deployments, scalable architectures, and the OpenAI Agents SDK.
+**How it works:** The modern standard for running MCP servers over the internet. It uses standard HTTP requests and avoids the timeout issues of long-lived SSE connections.
+```bash
+# Starts a Uvicorn server on http://0.0.0.0:8080
+python -m freshsales_mcp --transport streamable-http
+```
+*Note: You can change the port by setting `PORT=9090` in your `.env` file.*
+
+### 3. `sse` (Legacy Web)
+**Best for:** Older frameworks that specifically require Server-Sent Events.
+**How it works:** Establishes a persistent, one-way connection from the server to the client using the `/messages/` endpoint.
+```bash
+python -m freshsales_mcp --transport sse
 ```
 
 ---
