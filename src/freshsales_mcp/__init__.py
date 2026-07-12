@@ -1,0 +1,1 @@
+# Freshsales MCP package
